@@ -1,7 +1,7 @@
 import express from "express";
 import "dotenv/config";
 import path from "path";
-import { agregar, todos } from "./consultas/consultas.js";
+import { agregar, todos, eliminar } from "./consultas/consultas.js";
 
 const __dirname = path.resolve();
 const app = express();
@@ -19,11 +19,17 @@ app.get("/", (req, res) => {
 
 app.post("/cancion", async (req, res) => {
   const { titulo, artista, tono } = req.body;
-  const result = await agregar({ titulo, artista, tono });
+  const result = await agregar(titulo, artista, tono);
   res.json(result);
 });
 
 app.get("/canciones", async (req, res) => {
   const result = await todos();
+  res.json(result);
+});
+
+app.delete("/cancion", async (req, res) => {
+  const { id } = req.query;
+  const result = await eliminar(id);
   res.json(result);
 });
