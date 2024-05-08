@@ -44,6 +44,5 @@ app.put("/cancion/:id", async (req, res) => {
   const { titulo, artista, tono } = req.body;
   const { id } = req.params;
   const result = await editar(titulo, artista, tono, id);
-  console.log(result, "result");
   res.json(result);
 });

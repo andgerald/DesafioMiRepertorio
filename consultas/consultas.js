@@ -28,6 +28,5 @@ export const editar = async (titulo, artista, tono, id) => {
     "UPDATE canciones  SET titulo = $1, artista = $2, tono = $3 WHERE id = $4  RETURNING *",
     [titulo, artista, tono, id]
   );
-  console.log(result.rows);
   return result.rows[0];
 };
